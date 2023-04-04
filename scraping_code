@@ -1,0 +1,53 @@
+import requests
+import pandas as pd
+
+# Set up variables for the API parameters and pagination
+
+# We decided to search for resources, which are artworks: a work of art in the Art Institute of Chicago collections.
+
+# We decided to use the following artworks' parameters:
+   # id: unique identifier the artwork
+   # title: the name of the artwork
+   # artist_display: description of the creator of this work, it includes artist names, nationality and lifespan dates
+   # date_start: first year associated with the creation of the work
+   # date_end: last year associated with the creation of the work
+   # date_display: description of the period of time associated with the creation of the work
+   # place_of_origin: the location where the creation, design, or production of the work took place, or the original location of the work
+   # dimensions: the size, shape, scale, and dimensions of the work
+   # medium_display: the substances or materials used in the creation of a work
+   # exhibition_history: bibliographic list of all the places this work has been published
+   # fiscal_year: the fiscal year when the work was acquired
+   # is_public_domain: the work was created before copyrights existed or has left the copyright term
+   # colorfulness: abstract measure of colorfulness
+   # is_on_view: whether the artwork is on display
+   # artwork_type_title: the kind of object or work
+   # department_title: name of the curatiorial department that the work belongs to
+   # artist_title: name of the preferred artist/sculture associated with the work
+   # classification_title: the name of the preferred classification term for the work
+
+
+api = "https://api.artic.edu/api/v1/artworks"
+parameters = {
+    "fields": "id,title,artist_display,date_start,date_end,date_display,place_of_origin,dimensions,medium_display,exhibition_history,fiscal_year,is_public_domain,colorfulness,is_on_view,artwork_type_title,department_title,artist_title,classification_title",
+    "limit": 100  # Maximum number of records per page
+}
+
+# we initialize an empty list to store the DataFrames
+dfs = []
+
+# we iterate over the desired pages and make API calls
+for page in range(1, 51):  # Example: retrieve the first 2000 records (20 pages of 100 records each)
+    parameters["page"] = page
+    response = requests.get(api, params=parameters)
+    data = response.json()
+    dataframe = pd.DataFrame(data["data"])
+    dfs.append(dataframe)
+
+# we concatenate the DataFrames into a single DataFrame
+df = pd.concat(dfs, ignore_index=True)
+
+# then, we print the first few rows of the DataFrame
+#print(df)
+
+# finally, we save the dataFrame to a CSV file
+df.to_csv("dataset.csv", index=False)
