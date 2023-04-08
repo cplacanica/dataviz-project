@@ -46,8 +46,8 @@ for page in range(1, 51):  # Example: retrieve the first 2000 records (20 pages 
 # We concatenate the DataFrames into a single DataFrame
 df = pd.concat(dfs, ignore_index=True)
 
-# Then, we print the first few rows of the DataFrame
-#print(df)
+# Then, we print the first few rows of the DataFrame to check that everything works well
+print(df.head())
 
 # Finally, we save the dataFrame to a CSV file
 df.to_csv("dataset.csv", index=False)
