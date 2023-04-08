@@ -3,7 +3,7 @@ import pandas as pd
 
 # Set up variables for the API parameters and pagination
 
-# We decided to search for resources, which are artworks: a work of art in the Art Institute of Chicago collections.
+# We decided to search for resources, which are artworks: a work of art in the Art Institute of Chicago collections
 
 # We decided to use the following artworks' parameters:
    # id: unique identifier the artwork
@@ -32,10 +32,10 @@ parameters = {
     "limit": 100  # Maximum number of records per page
 }
 
-# we initialize an empty list to store the DataFrames
+# We initialize an empty list to store the DataFrames
 dfs = []
 
-# we iterate over the desired pages and make API calls
+# We iterate over the desired pages and make API calls
 for page in range(1, 51):  # Example: retrieve the first 2000 records (20 pages of 100 records each)
     parameters["page"] = page
     response = requests.get(api, params=parameters)
@@ -43,11 +43,11 @@ for page in range(1, 51):  # Example: retrieve the first 2000 records (20 pages 
     dataframe = pd.DataFrame(data["data"])
     dfs.append(dataframe)
 
-# we concatenate the DataFrames into a single DataFrame
+# We concatenate the DataFrames into a single DataFrame
 df = pd.concat(dfs, ignore_index=True)
 
-# then, we print the first few rows of the DataFrame
+# Then, we print the first few rows of the DataFrame
 #print(df)
 
-# finally, we save the dataFrame to a CSV file
+# Finally, we save the dataFrame to a CSV file
 df.to_csv("dataset.csv", index=False)
