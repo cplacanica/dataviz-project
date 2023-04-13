@@ -6,3 +6,5 @@ df = pd.read_csv('project_dataset.csv')
 
 # Check for missing values
 print(df.isnull().sum())
+
+# Remove null values
