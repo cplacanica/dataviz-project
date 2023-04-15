@@ -36,4 +36,5 @@ ax.set_ylabel('Percentage')
 ax.set_title('Artworks on View and in Public/Private Domain by Department')
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
-plt.show() # Show the chart
+# Show the chart
+plt.show()
