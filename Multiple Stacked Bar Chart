@@ -1,0 +1,39 @@
+import pandas as pd
+df = pd.read_csv('project_dataset.csv')
+df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'], inplace=True)
+df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Multiple Stacked Bar Chart
+
+# Group the data by department and calculate the percentages
+dep_counts = df['department_title'].value_counts()
+dep_grouped = df.groupby('department_title').filter(lambda x: dept_counts[x.name] > 80).groupby('department_title')
+is_on_view_perc = dep_grouped['is_on_view'].mean() * 100
+is_not_on_view_perc = 100 - is_on_view_perc
+public_perc = dep_grouped['is_public_domain'].mean() * 100
+private_perc = 100 - public_perc
+
+# Set up the chart
+fig, ax = plt.subplots()
+width = 0.35 # Width of the bars
+x = np.arange(len(is_on_view_perc))
+
+# Plot the bars
+ax.bar(x, is_on_view_perc, width, label='Is On View', color='lightblue')
+ax.bar(x, is_not_on_view_perc, width, bottom=is_on_view_perc, label='Is Not On View', color='blue')
+ax.bar(x + width, public_perc, width, label='Public Domain', color='pink')
+ax.bar(x + width, private_perc, width, bottom=public_perc, label='Private Domain', color='purple')
+
+# Set up the labels, title, and legend
+ax.set_xticks(x)
+ax.set_xticklabels(is_on_view_perc.index, rotation=45)
+# We use is_on_view_perc.index to ensures that the x-axis tick labels are consistent with the bar chart
+# and that the x-axis tick labels are in the same order as the stacked bars in the chart
+ax.set_ylabel('Percentage')
+ax.set_title('Artworks on View and in Public/Private Domain by Department')
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+plt.show() # Show the chart
