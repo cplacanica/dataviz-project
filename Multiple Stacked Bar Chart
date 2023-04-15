@@ -10,7 +10,7 @@ import numpy as np
 
 # Group the data by department and calculate the percentages
 dep_counts = df['department_title'].value_counts()
-dep_grouped = df.groupby('department_title').filter(lambda x: dept_counts[x.name] > 80).groupby('department_title')
+dep_grouped = df.groupby('department_title').filter(lambda x: dep_counts[x.name] > 80).groupby('department_title')
 is_on_view_perc = dep_grouped['is_on_view'].mean() * 100
 is_not_on_view_perc = 100 - is_on_view_perc
 public_perc = dep_grouped['is_public_domain'].mean() * 100
