@@ -107,4 +107,4 @@ plt.show() # Show the chart
 
 ####################################################
 
-I have tried to plot the same plot, considering only the first four departments, but it does not work :(
+# I have tried to plot the same plot, considering only the first four departments, but it does not work :(
