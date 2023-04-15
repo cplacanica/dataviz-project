@@ -1,12 +1,4 @@
-import pandas as pd
-df = pd.read_csv('project_dataset.csv')
-df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'], inplace=True)
-df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Multiple Stacked Bar Chart
+# Multiple Stacked Bar Chart for the first 4 departments
 
 # Group the data by department and calculate the percentages
 dep_counts = df['department_title'].value_counts()
@@ -22,8 +14,8 @@ width = 0.35 # Width of the bars
 x = np.arange(len(is_on_view_perc))
 
 # Plot the bars
-ax.bar(x, is_on_view_perc, width, label='Is On View', color='lightblue')
-ax.bar(x, is_not_on_view_perc, width, bottom=is_on_view_perc, label='Is Not On View', color='blue')
+ax.bar(x, is_on_view_perc, width, label='Is On View', color='darkblue')
+ax.bar(x, is_not_on_view_perc, width, bottom=is_on_view_perc, label='Is Not On View', color='lightblue')
 ax.bar(x + width, public_perc, width, label='Public Domain', color='pink')
 ax.bar(x + width, private_perc, width, bottom=public_perc, label='Private Domain', color='purple')
 
@@ -38,3 +30,81 @@ ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
 # Show the chart
 plt.show()
+
+####################################################
+
+# Multiple Stacked Bar Chart for all departments
+
+# Group the data by department and calculate the percentages
+dep_counts = df['department_title'].value_counts()
+dep_grouped = df.groupby('department_title')
+is_on_view_perc = dep_grouped['is_on_view'].mean() * 100
+is_not_on_view_perc = 100 - is_on_view_perc
+public_perc = dep_grouped['is_public_domain'].mean() * 100
+private_perc = 100 - public_perc
+
+# Set up the chart
+fig, ax = plt.subplots()
+width = 0.6 # Width of the bars
+x = np.arange(len(is_on_view_perc))*2+width/2
+
+# Plot the bars
+ax.bar(x, is_on_view_perc, width, label='Is On View', color='darkblue')
+ax.bar(x, is_not_on_view_perc, width, bottom=is_on_view_perc, label='Is Not On View', color='lightblue')
+ax.bar(x + width, public_perc, width, label='Public Domain', color='pink')
+ax.bar(x + width, private_perc, width, bottom=public_perc, label='Private Domain', color='purple')
+
+# Set up the labels, title, and legend
+ax.set_xticks(x+width/2)
+ax.set_xticklabels(is_on_view_perc.index, rotation=45, ha='right', fontsize=8)
+#ax.set_xticklabels(is_on_view_perc.index, rotation=45)
+# We use is_on_view_perc.index to ensures that the x-axis tick labels are consistent with the bar chart
+# and that the x-axis tick labels are in the same order as the stacked bars in the chart
+ax.set_ylabel('Percentage')
+ax.set_title('Artworks on View and in Public/Private Domain by Department')
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.8))
+
+plt.show() # Show the chart
+
+####################################################
+
+# Multiple Stacked Bar Chart for all departments with count on y axes 
+
+# Group the data by department and calculate the percentages
+dep_counts = df['department_title'].value_counts()
+dep_grouped = df.groupby('department_title')
+is_on_view_count = dep_grouped['is_on_view'].sum()
+is_not_on_view_count = dep_counts - is_on_view_count
+public_count = dep_grouped['is_public_domain'].sum()
+private_count = dep_counts - public_count
+
+# Sort the data in descending order by total count
+total_count = dep_counts.sort_values(ascending=False)
+is_on_view_count = is_on_view_count[total_count.index]
+is_not_on_view_count = is_not_on_view_count[total_count.index]
+public_count = public_count[total_count.index]
+private_count = private_count[total_count.index]
+
+# Set up the chart
+fig, ax = plt.subplots()
+width = 0.6 # Width of the bars
+x = np.arange(len(total_count))*2+width/2
+
+# Plot the bars
+ax.bar(x, is_on_view_count, width, label='Is On View', color='darkblue')
+ax.bar(x, is_not_on_view_count, width, bottom=is_on_view_count, label='Is Not On View', color='lightblue')
+ax.bar(x + width, public_count, width, label='Public Domain', color='pink')
+ax.bar(x + width, private_count, width, bottom=public_count, label='Private Domain', color='purple')
+
+# Set up the labels, title, and legend
+ax.set_xticks(x+width/2)
+ax.set_xticklabels(total_count.index, rotation=45, ha='right', fontsize=8)
+ax.set_ylabel('Count')
+ax.set_title('Artworks on View and in Public/Private Domain by Department')
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.8))
+
+plt.show() # Show the chart
+
+####################################################
+
+I have tried to plot the same plot, considering only the first four departments, but it does not work :(
