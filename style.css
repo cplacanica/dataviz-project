@@ -1,0 +1,71 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	width: 200%;
+	height: 100%;
+	position: relative;
+	left: 0;
+	transition: left 1s ease;
+}
+
+.page {
+  width: 50%;
+  height: 100vh;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.black {
+  width: 75%;
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+.black h1 {
+  position: absolute;
+  bottom: 3%;
+  left: 2%;
+  margin: 0;
+  padding: 0 1rem 1rem 1rem;
+	font-family: Arial, sans-serif;
+	font-size: 10rem;
+    font-weight: bold;
+
+
+}
+
+.white h1 {
+  position: absolute;
+  top: 3%;
+  right: 2%;
+  margin: 0;
+  padding: 0 1rem 1rem 1rem;
+	font-family: Arial, sans-serif;
+	font-size: 6rem;
+    font-weight: bold;
+
+}
+
+.white {
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .black {
+    width: 100%;
+  }
+  .white {
+    display: none;
+  }
+}
