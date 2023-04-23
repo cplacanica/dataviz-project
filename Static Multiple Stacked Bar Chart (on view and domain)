@@ -1,4 +1,4 @@
-# Multiple Stacked Bar Chart for the top 4 departments with count on y axes
+# Static Multiple Stacked Bar Chart for the top 4 departments, with count on y axis
 
 # We calculate the unique values in the 'department_title' column of the dataset.
 dep_counts = df['department_title'].value_counts()
