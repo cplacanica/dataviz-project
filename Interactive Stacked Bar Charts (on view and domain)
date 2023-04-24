@@ -111,8 +111,8 @@ from plotly.subplots import make_subplots
 fig1 = go.Figure()
 
 # Add traces for the first stacked bar chart
-fig1.add_trace(go.Bar(x=total_count.index, y=is_not_on_view_count, name='Is Not On View', marker_color='darkgreen'))
-fig1.add_trace(go.Bar(x=total_count.index, y=is_on_view_count, name='Is On View', marker_color='lime'))
+fig1.add_trace(go.Bar(x=dep_counts.index, y=is_not_on_view_count, name='Is Not On View', marker_color='darkgreen'))
+fig1.add_trace(go.Bar(x=dep_counts.index, y=is_on_view_count, name='Is On View', marker_color='lime'))
 
 # Customize the layout of the first chart and add interactivity
 fig1.update_layout(
@@ -142,8 +142,8 @@ fig1.update_layout(
 fig2 = go.Figure()
 
 # Add traces for the second stacked bar chart
-fig2.add_trace(go.Bar(x=total_count.index, y=private_count, name='Private Domain', marker_color='darkred'))
-fig2.add_trace(go.Bar(x=total_count.index, y=public_count, name='Public Domain', marker_color='red'))
+fig2.add_trace(go.Bar(x=dep_counts.index, y=private_count, name='Private Domain', marker_color='darkred'))
+fig2.add_trace(go.Bar(x=dep_counts.index, y=public_count, name='Public Domain', marker_color='red'))
 
 # Customize the layout of the second chart and add interactivity
 fig2.update_layout(
