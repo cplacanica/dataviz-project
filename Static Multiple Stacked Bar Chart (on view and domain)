@@ -5,18 +5,18 @@ dep_counts = df['department_title'].value_counts()
 print(dep_counts)
 
 # We select the top 4 departments based on the number of artworks.
-total_count = dep_counts[:4].sort_values(ascending=False)
+top_four_count = dep_counts[:4].sort_values(ascending=False)
 print(total_count)
 
 # We group the original df by department, filtering out departments with less than 90 artworks.
 dep_grouped = df.groupby('department_title').filter(lambda x: dep_counts[x.name] > 90).groupby('department_title')
 
 # We calculate the counts of artworks that are (are not) on view and in the public/private domain for those departments,
-# updateing these counts to only include the top 4 departments using [total_count.index].
-is_on_view_count = dep_grouped['is_on_view'].sum()[total_count.index]
-is_not_on_view_count = (dep_counts - is_on_view_count)[total_count.index]
-public_count = dep_grouped['is_public_domain'].sum()[total_count.index]
-private_count = (dep_counts - public_count)[total_count.index]
+# updateing these counts to only include the top 4 departments using [top_four_count.index].
+is_on_view_count = dep_grouped['is_on_view'].sum()[top_four_count.index]
+is_not_on_view_count = (dep_counts - is_on_view_count)[top_four_count.index]
+public_count = dep_grouped['is_public_domain'].sum()[top_four_count.index]
+private_count = (dep_counts - public_count)[top_four_count.index]
 
 # Set up the chart
 fig, ax = plt.subplots()
@@ -31,7 +31,7 @@ ax.bar(x + width, private_count, width, bottom=public_count, label='Private Doma
 
 # Set up the labels, title, and legend
 ax.set_xticks(x+width/2)
-ax.set_xticklabels(total_count.index, rotation=45, ha='right', fontsize=8)
+ax.set_xticklabels(top_four_count.index, rotation=45, ha='right', fontsize=8)
 ax.set_ylabel('Count')
 ax.set_title('Artworks on View and in Public/Private Domain by Department')
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.8))
