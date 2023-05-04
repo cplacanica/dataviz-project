@@ -137,6 +137,23 @@ html, body {
   text-decoration: underline;
 }
 
+.color-link {
+  position: absolute;
+  top: 41%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.color-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .curat_header {
   position: static;
   text-align: center;
