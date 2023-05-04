@@ -7,9 +7,9 @@ html, body {
 .wrapper {
 	width: 200%;
 	height: 100%;
-	position: relative;
+	position: fixed;
 	left: 0;
-	transition: left 1s ease;
+	transition: left 0.5s ease;
 }
 
 .page {
@@ -19,13 +19,20 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+}
+
+.header {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  color: white;
+  font-size: 1.5rem;
 }
 
 .black {
   width: 75%;
   height: 100%;
-  background-color: black;
+  background-color: #151515;
   color: white;
 }
 
@@ -35,11 +42,33 @@ html, body {
   left: 2%;
   margin: 0;
   padding: 0 1rem 1rem 1rem;
-	font-family: Arial, sans-serif;
-	font-size: 10rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 6rem;
     font-weight: bold;
 
 
+}
+
+.black h2 {
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  margin: 0;
+  padding: 0 1rem 1rem 1rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 4rem;
+    font-weight: bold;
+}
+
+.black h3 {
+    position: absolute;
+  top: 10%;
+  left: 2%;
+  margin: 0;
+  padding: 0 1rem 1rem 95rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 3rem;
+    font-weight: bold;
 }
 
 .white h1 {
@@ -57,13 +86,56 @@ html, body {
 .white {
   width: 25%;
   height: 100%;
-  background-color: white;
+  background-color: #f0f0f0;
   color: black;
+  position: relative;
+}
+
+.white h1 {
+  position: absolute;
+  top: 3%;
+  right: 2%;
+  margin: 0;
+  padding: 0 1rem 0rem 1rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 5rem;
+    font-weight: bold;
+
+}
+
+.white h2 {
+  position: absolute;
+  bottom: 50%;
+  right: 2%;
+  margin: 0;
+  padding: 0 1rem 0rem 1rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 6rem;
+    font-weight: bold;
+
+}
+
+.curatorial-link {
+  position: absolute;
+  top: 25%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.curatorial-link:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
   .black {
-    width: 100%;
+    width: 75%;
   }
   .white {
     display: none;
