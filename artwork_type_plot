@@ -44,6 +44,4 @@ dep.set_title('Count Plot of Artwork Types', fontdict=font_t)
 dep.set_xticklabels(dep.get_xticklabels(), rotation=45, horizontalalignment='right', fontdict=font_lab)
 
 # Show the plot
-plt.savefig('artwork_types.png', dpi=300, bbox_inches='tight')
-
 plt.show()
