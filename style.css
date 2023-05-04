@@ -45,8 +45,6 @@ html, body {
 	font-family: "Andale Mono", monospace;
 	font-size: 6rem;
     font-weight: bold;
-
-
 }
 
 .black h2 {
@@ -66,21 +64,9 @@ html, body {
   left: 2%;
   margin: 0;
   padding: 0 1rem 1rem 95rem;
-	font-family: "Andale Mono", monospace;
-	font-size: 3rem;
-    font-weight: bold;
-}
-
-.white h1 {
-  position: absolute;
-  top: 3%;
-  right: 2%;
-  margin: 0;
-  padding: 0 1rem 1rem 1rem;
-	font-family: Arial, sans-serif;
-	font-size: 6rem;
-    font-weight: bold;
-
+  	font-family: "Andale Mono", monospace;
+  	font-size: 3rem;
+   	font-weight: bold;
 }
 
 .white {
@@ -96,9 +82,9 @@ html, body {
   top: 3%;
   right: 2%;
   margin: 0;
-  padding: 0 1rem 0rem 1rem;
-	font-family: "Andale Mono", monospace;
-	font-size: 5rem;
+  padding: 0 1rem 1rem 1rem;
+	font-family: Arial, sans-serif;
+	font-size: 6rem;
     font-weight: bold;
 
 }
@@ -145,6 +131,7 @@ html, body {
   color: black !important;
   text-decoration: none !important;
 }
+
 .artwork-link:hover {
   color: white;
   text-decoration: underline;
