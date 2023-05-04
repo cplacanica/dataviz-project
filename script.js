@@ -3,16 +3,15 @@ const blackPage = document.querySelector('.black');
 const whitePage = document.querySelector('.white');
 const smallText = document.querySelector('.small-text');
 
-window.addEventListener('wheel', (e: WheelEvent ) : void => {
+window.addEventListener('wheel', (e) => {
   if (e.deltaY > 0) {
     wrapper.style.left = '-100%';
   } else {
     wrapper.style.left = '0';
   }
-});
 
-# We check if the user has scrolled to the second page
-if (wrapper.getBoundingClientRect().left === -window.innerWidth) {
+  // Check if the user has scrolled to the second page
+  if (wrapper.getBoundingClientRect().left === -window.innerWidth) {
     // Show the small text
     smallText.style.display = 'block';
   } else {
@@ -21,10 +20,10 @@ if (wrapper.getBoundingClientRect().left === -window.innerWidth) {
   }
 });
 
-blackPage.addEventListener('click', listener: () : void => {
+blackPage.addEventListener('click', () => {
   wrapper.style.left = '-100%';
 });
 
-whitePage.addEventListener('click', listener : () : void => {
+whitePage.addEventListener('click', () => {
   wrapper.style.left = '0';
 });
