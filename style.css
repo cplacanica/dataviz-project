@@ -133,6 +133,81 @@ html, body {
   text-decoration: underline;
 }
 
+.artwork-link {
+  position: absolute;
+  top: 33%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.artwork-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.curat_header {
+  position: static;
+  text-align: center;
+  font-family: "Andale Mono", monospace;
+  font-size: 25px;
+  color: #151515;
+  margin: 0;
+  padding: 25px 0;
+}
+
+.curat_header h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 20px;
+}
+
+.image {
+    width: 60%;
+    height: 60%;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.paragraph {
+  position: relative;
+  font-family: "Andale Mono", monospace;
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+    line-height: 2;
+}
+
+nav {
+  position: absolute;
+  font-family: "Andale Mono", monospace;
+  top: 20px;
+  right: 20px;
+  text-decoration: none;
+
+}
+
+nav a {
+  display: inline-block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .black {
     width: 75%;
