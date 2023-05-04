@@ -1,0 +1,50 @@
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+df = pd.read_csv('project_dataset.csv')
+
+# Check for missing values
+null_counts = df.isna().sum()
+if null_counts.sum() == 0:
+    print('There are no null values')
+else:
+    print(null_counts)
+
+# Drop null values for the variables date_start, date_end, medium_display, artwork_type_title, department_title and artist_title
+df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'], inplace=True)
+
+# For the variable colorfulness, we can fill the null values with the median
+df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
+
+# Set the font properties
+font_t = {'family': 'Andale Mono', 'size': 20, 'weight': 'bold'}
+font_lab = {'family': 'Andale Mono', 'size': 16}
+
+plt.figure(figsize=(20, 15))
+
+# We set the theme
+sns.set_theme(style="white")
+
+# We get the top artwork types
+print(counts_art)
+df_top_art = df[df['artwork_type_title'].isin(counts_art[counts_art >= 60].index)]
+
+box = sns.boxplot(data=df_top_art, x='artwork_type_title', y="colorfulness", whis=np.inf, palette="Spectral")
+
+# Set the x-axis label
+box.set_xlabel('Artwork Type', fontdict=font_lab)
+
+# Set the y-axis label
+box.set_ylabel('Colorfulness', fontdict=font_lab)
+
+# Set the title
+box.set_title('Boxplot of Colorfulness and Artwork Type', fontdict=font_t)
+box.set_xticklabels(box.get_xticklabels(), rotation=0, horizontalalignment='center', fontdict=font_lab)
+
+# Create the stripplot
+strip = sns.stripplot(data=df_top_art, x='artwork_type_title', y="colorfulness", jitter=True)
+
+# Show the plot
+plt.show()
