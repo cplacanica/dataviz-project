@@ -1,0 +1,48 @@
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+df = pd.read_csv('project_dataset.csv')
+
+# Check for missing values
+null_counts = df.isna().sum()
+if null_counts.sum() == 0:
+    print('There are no null values')
+else:
+    print(null_counts)
+
+# Drop null values for the variables date_start, date_end, medium_display, artwork_type_title, department_title and artist_title
+df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'], inplace=True)
+
+# For the variable colorfulness, we can fill the null values with the median
+df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
+
+# Set the font properties
+font_t = {'family': 'Andale Mono', 'size': 20, 'weight': 'bold'}
+font_lab = {'family': 'Andale Mono', 'size': 16}
+
+plt.figure(figsize=(20, 15))
+
+# We set the theme
+sns.set_theme(style="white")
+
+# Create the countplot
+counts = df['department_title'].value_counts().sort_values(ascending=False)
+dep = sns.countplot(x='department_title', data=df, palette='Spectral', saturation=10, order=counts.index)
+
+# Set the font properties
+
+# Set the x-axis label
+dep.set_xlabel('Departments', fontdict=font_lab)
+
+# Set the y-axis label
+dep.set_ylabel('Count', fontdict=font_lab)
+
+# Set the title
+dep.set_title('Count Plot of Curatorial Departments', fontdict=font_t)
+
+# Rotate the x-axis labels
+dep.set_xticklabels(dep.get_xticklabels(), rotation=45, horizontalalignment='right', fontdict=font_lab)
+
+plt.show()
