@@ -209,14 +209,16 @@ iframe {
 }
 
 .paragraph {
-  position: relative;
+  position: absolute;
   font-family: "Andale Mono", monospace;
   font-size: 18px;
   color: #333;
   margin: 0;
   padding: 20px 0;
-  text-align: center;
-    line-height: 2;
+  text-align: justify;
+  left: 20%; right: 20%;
+  line-height: 2;
+  word-wrap: break-word;
 }
 
 nav {
