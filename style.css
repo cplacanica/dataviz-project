@@ -188,6 +188,13 @@ html, body {
   padding: 20px;
 }
 
+.curat_header h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+  margin: 0;
+  padding: 20px;
+}
+
 .image {
     width: 60%;
     height: 60%;
@@ -195,6 +202,10 @@ html, body {
 
 .image-container {
     text-align: center;
+}
+
+iframe {
+  border: none;
 }
 
 .paragraph {
