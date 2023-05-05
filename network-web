@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Colorfulness in Artworks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<nav>
+  <a href="website.html">Home</a>
+</nav>
+<body>
+	<header class = 'curat_header'>
+		<h1>Artists and their Methods</h1>
+	</header>
+	<main>
+		<div style="text-align: left;"><iframe src = "network.html" height = "1200" width = "1500"></iframe></div>
+      <p class='paragraph'>We plotted the count of all the curatorial departments inside the Art Institute of Chicago.
+        From the graph we can see that the ones which are mostly present are Arts of Asia</p>
+	</main>
+</body>
+</html>
