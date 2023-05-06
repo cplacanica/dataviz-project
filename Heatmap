@@ -1,0 +1,42 @@
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import networkx as nx
+
+# After scraping from the internet, we obtained this dataset.
+df = pd.read_csv('project_dataset.csv')
+
+# We drop null values for the variables date_start, date_end, medium_display, artwork_type_title, department_title
+# and artist_title.
+df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'],
+          inplace=True)
+
+# For the variable colorfulness, we can fill the null values with the median.
+df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
+
+
+
+
+plt.figure(figsize=(20, 15))
+
+# We create a df with the target variables.
+corr_df = df[['has_not_been_viewed_much','is_public_domain', 'has_multimedia_resources', 'has_educational_resources', 'has_advanced_imaging']]
+corr_matrix = corr_df.corr(method='pearson')
+
+font_heat = font_lab = {'family': 'Andale Mono', 'size': 11}
+
+# We create a heatmap using Seaborn.
+heat = sns.heatmap(corr_matrix, annot=True, cmap='Spectral', annot_kws={'fontfamily': 'Andale Mono', 'fontsize': 15})
+
+# We set the title.
+heat.set_title('Heatmap - Visualizing Correlation', fontdict=font_t)
+heat.set_xticklabels(heat.get_xticklabels(), rotation=0, horizontalalignment='center', fontdict=font_heat)
+heat.set_yticklabels(heat.get_xticklabels(), rotation=90, horizontalalignment='center', fontdict=font_heat)
+
+plt.savefig('heat.png', dpi=300, bbox_inches='tight')
+
+plt.show()
