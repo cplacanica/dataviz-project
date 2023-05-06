@@ -91,7 +91,35 @@ fig_map = px.choropleth(dfmap,
                         locations='artist_country', 
                         locationmode='country names', 
                         color='num_artists',
-                        hover_data=['num_artists'],
-                        title='Number of Artists by Country')
+                        hover_data=['num_artists'])
+                        
+fig_map.update_layout(
+    title={
+        'text': 'Artists by Country',
+        'font': {'size': 20, 'color': 'black', 'family': 'Andale Mono'},
+        'x': 0.5, # center the title
+        'y': 0.95, # position the title at the top of the chart
+    },
+    legend={
+        'title': {'text': 'Number of Artists'},
+        'font': {'size': 15, 'family': 'Andale Mono'},
+    },
+    coloraxis_colorbar={
+        'title': {'text': 'Number of Artists',
+                  'font': {'size': 16, 'color': 'red'}},
+        'title.font': {'size': 14, 'color': 'black', 'family': 'Andale Mono'},
+        'outlinewidth': 1,
+        'tickfont': {'size': 12, 'color': 'black', 'family': 'Andale Mono'},
+        'ticklen': 10,
+    },
+    geo={
+        'showcountries': True, # display country borders
+        'showcoastlines': True, # display coastlines
+        'landcolor': 'white',
+        'oceancolor': 'lightblue',
+        'countrycolor': 'white',
+    }
+)
+
 fig_map.show()
 
