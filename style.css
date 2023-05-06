@@ -103,7 +103,7 @@ html, body {
 
 .curatorial-link {
   position: absolute;
-  top: 25%;
+  bottom: 66%;
   right: 2%;
   margin: 0%;
   padding: 0 1rem 0rem 0rem;
@@ -113,15 +113,48 @@ html, body {
   color: black !important;
   text-decoration: none !important;
 }
-
 .curatorial-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.dyn-link {
+  position: absolute;
+  bottom: 59%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.dyn-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.line-link {
+  position: absolute;
+  bottom: 52%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.line-link:hover {
   color: white;
   text-decoration: underline;
 }
 
 .artwork-link {
   position: absolute;
-  top: 33%;
+  bottom: 45%;
   right: 2%;
   margin: 0%;
   padding: 0 1rem 0rem 0rem;
@@ -131,7 +164,6 @@ html, body {
   color: black !important;
   text-decoration: none !important;
 }
-
 .artwork-link:hover {
   color: white;
   text-decoration: underline;
@@ -139,7 +171,7 @@ html, body {
 
 .color-link {
   position: absolute;
-  top: 41%;
+  bottom: 38%;
   right: 2%;
   margin: 0%;
   padding: 0 1rem 0rem 0rem;
@@ -154,9 +186,26 @@ html, body {
   text-decoration: underline;
 }
 
+.dash-link {
+  position: absolute;
+  bottom: 31%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.dash-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .corr-link {
   position: absolute;
-  top: 49%;
+  bottom: 24%;
   right: 2%;
   margin: 0%;
   padding: 0 1rem 0rem 0rem;
@@ -167,6 +216,40 @@ html, body {
   text-decoration: none !important;
 }
 .corr-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.net-link {
+  position: absolute;
+  bottom: 17%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.net-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.heat-link {
+  position: absolute;
+  bottom: 10%;
+  right: 2%;
+  margin: 0%;
+  padding: 0 1rem 0rem 0rem;
+	font-family: "Andale Mono", monospace;
+	font-size: 2rem;
+    font-weight: normal;
+  color: black !important;
+  text-decoration: none !important;
+}
+.heat-link:hover {
   color: white;
   text-decoration: underline;
 }
