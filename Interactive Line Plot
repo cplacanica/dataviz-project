@@ -1,0 +1,33 @@
+import pandas as pd
+df = pd.read_csv('project_dataset.csv')
+df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'], inplace=True)
+df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# We calculate the unique values in the 'department_title' column of the dataset.
+dep_counts = df['department_title'].value_counts()
+print(dep_counts)
+
+# We create a new df, including only the top three departments.
+top_three_df = df[df['department_title'].isin(['Arts of Asia', 'Prints and Drawings', 'Photography and Media'])]
+top_three_df.head()
+
+# We create a new column representing each time period. Each class is of 100 years.
+top_three_df['time_period'] = pd.cut(top_three_df['date_start'], bins=range(0, 2101, 100), right=False, labels=['0-99', '100-199', '200-299', '300-399', '400-499', '500-599', '600-699', '700-799', '800-899', '900-999', '1000-1099', '1100-1199', '1200-1299', '1300-1399', '1400-1499', '1500-1599', '1600-1699', '1700-1799', '1800-1899', '1900-1999', '2000-2099'])
+top_three_df.head()
+
+# We group data by time period and department.
+df_grouped = top_three_df.groupby(['department_title','time_period']).size().reset_index(name='count')
+
+# We create a line plot.
+line_plot = px.line(df_grouped, x='time_period', y='count', height=800, width=1200, color='department_title')
+line_plot.update_layout(title_text='Artworks over time', title_font=dict(size=24))
+line_plot.update_xaxes(title_text='Time Period', title_font=dict(size=20))
+line_plot.update_yaxes(title_text='Count', title_font=dict(size=20))
+line_plot.show()
