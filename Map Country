@@ -1,0 +1,97 @@
+import pandas as pd
+df = pd.read_csv('project_dataset.csv')
+df.dropna(subset=['date_start', 'date_end', 'medium_display', 'artwork_type_title', 'department_title', 'artist_title'], inplace=True)
+df['colorfulness'].fillna(df['colorfulness'].median(), inplace=True)
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# We create a new df which contains only entries related to Painting. 
+dfmap = df[df['artwork_type_title'] == 'Painting']
+
+# We check for unique artists values.
+dfmap['artist_title'].unique()
+
+# Add a new column called 'artist_country' to the DataFrame, using a dictionary which maps artist to their respective
+# continents.
+artist_country_dict = {
+    'Guido Reni': 'Italy',
+    'Hilaire Germain Edgar Degas': 'France',
+    'Berthe Morisot': 'France',
+    'Claude Monet': 'France',
+    'Diego Velázquez': 'Spain',
+    'Kurt Seligmann': 'Switzerland',
+    "Georgia O'Keeffe": 'United States',
+    'Pablo Picasso': 'Spain',
+    'Eugène Delacroix': 'France',
+    'Pierre Puvis de Chavannes': 'France',
+    'Édouard Manet': 'France',
+    'Philip Guston': 'United States',
+    'Pierre Bonnard': 'France',
+    'Max Ernst': 'Germany',
+    'Diego Rivera': 'Mexico',
+    'Jack Whitten': 'United States',
+    'Martin Wong': 'United States',
+    'Frederic Remington': 'United States',
+    'William Trost Richards': 'United States',
+    'Artist unknown': 'N/A',
+    'Ary Scheffer': 'Netherlands',
+    'Monogrammist PG': 'N/A',
+    'Giambattista Tiepolo': 'Italy',
+    'Spanish School': 'Spain',
+    'Luca Giordano': 'Italy',
+    'Walter Shirlaw': 'United States',
+    'George Inness': 'United States',
+    'Henri Matisse': 'France',
+    'O. Louis Guglielmi': 'United States',
+    'James McNeill Whistler': 'United States',
+    'Victor Brauner': 'Romania',
+    'Cornelis Engelbrechtsz.': 'Netherlands',
+    'Miyoko Ito': 'United States',
+    'Richard Maris Loving': 'United States',
+    'Marie Laurencin': 'France',
+    'Julius Gari Melchers': 'United States',
+    'Jessie Arms Botke': 'United States',
+    'Theodore Robinson': 'United States',
+    'Mary Cassatt': 'United States',
+    'Peter Saul': 'United States',
+    'Xugu': 'China',
+    'Mori Sosen': 'Japan',
+    'Vija Celmins': 'Latvia',
+    'Joan Snyder': 'United States',
+    'Joan Mitchell': 'United States',
+    'Lari Pittman': 'United States',
+    'Ben Shahn': 'United States',
+    'Chen Ruyan': 'China',
+    'Lu Wei': 'China',
+    'Ogata Korin': 'Japan',
+    'Xu Wei': 'China',
+    'Wang Jian': 'China',
+    'Fan Qi': 'China',
+    'Léon Joseph Florentin Bonnat': 'France'
+}
+
+dfmap['artist_country'] = dfmap['artist_title'].map(artist_country_dict)
+dfmap.head()
+
+# We check for missing values.
+dfmap.isnull().sum()
+
+# We use the transform function to create a new column with the counts for each country.
+dfmap['num_artists'] = dfmap.groupby('artist_country')['artist_title'].transform('nunique')
+dfmap.head()
+
+
+# We create a choropleth map using Plotly Express.
+fig_map = px.choropleth(dfmap, 
+                        locations='artist_country', 
+                        locationmode='country names', 
+                        color='num_artists',
+                        hover_data=['num_artists'],
+                        title='Number of Artists by Country')
+fig_map.show()
+
