@@ -5,19 +5,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <nav>
+  <a href="artwork_types.html">Dive Into the Artworks</a>
   <a href="website.html">Home</a>
-  <a href="heatmap.html">Correlation in the Gallery</a>
+  <a href="dash.html">Use of Colors</a>
 </nav>
 <body>
 	<header class = 'curat_header'>
-		<h1>Colorfulness in Artworks</h1>
+		<h1>Artworks and Colorfulness</h1>
 	</header>
 	<main>
       <div class="image-container">
           <img src="boxplot.png" alt="Colorfulness" class="image">
       </div>
-      <p class = 'paragraph'>We plotted the count of all the curatorial departments inside the Art Institute of Chicago.<br>
-        From the graph we can see that the ones which are mostly present are Arts of Asia</p>
+      <p class = 'paragraph'>We can see from the plot that for what regards the colorfulness, the artwork type "Photograph" is the one that has lower values.
+          We suspect that this might be because in general photographs are also very common in black-and-white or in sepia colors,
+          meaning that the colorfulness will be lower than other types of artworks. The type that has the highest values is "Print",
+          which not only has higher values, but it is the only one which has values of more than 100. Indeed, contrary to photography,
+          prints are frequently in brighter colors. We also have to point out that the observations for Print were more than the ones for the other Artwork Types,
+          which might have impacted the distribution of colorfulness. Finally, we were not surprised to see that despite having less observations with respect to the other types,
+          "Painting" has, on average, higher values than "Photography" and "Decorative Arts". Moreover, differently from "Print",
+          it has no particularly high values, probably because painting in general tends to have an average level of color,
+          which is rarely exaggerated due to difficulties in dealing with many strong colors.</p>
 	</main>
 </body>
 </html>
