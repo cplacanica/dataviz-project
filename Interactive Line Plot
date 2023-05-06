@@ -25,9 +25,47 @@ top_three_df.head()
 # We group data by time period and department.
 df_grouped = top_three_df.groupby(['department_title','time_period']).size().reset_index(name='count')
 
-# We create a line plot.
 line_plot = px.line(df_grouped, x='time_period', y='count', height=800, width=1200, color='department_title')
-line_plot.update_layout(title_text='Artworks over time', title_font=dict(size=24))
-line_plot.update_xaxes(title_text='Time Period', title_font=dict(size=20))
-line_plot.update_yaxes(title_text='Count', title_font=dict(size=20))
+line_plot.update_layout(template='simple_white', title={
+        'text': 'Artworks over time',
+        'font': {'size': 20, 'family': 'Andale Mono'},
+        'x': 0.5,
+        'y': 0.95,
+        'xanchor': 'center',
+        'yanchor': 'top'},
+    width=1200,
+    # width = 800 for the website graphs
+    height=800,
+    xaxis_tickangle=-45,
+    yaxis_title='Count',
+    hovermode='closest',
+    barmode='stack',
+    updatemenus=[dict(
+        type='buttons',
+        showactive=False,
+        buttons=[dict(
+            label='Zoom',
+            method='relayout',
+            args=[{'xaxis.range': [0, 2]}]
+        ), dict(
+            label='Reset',
+            method='relayout',
+            args=[{'xaxis.range': [None, None]}]
+        )]
+    )],
+    legend=dict(
+        font=dict(size=10, family='Andale Mono'),
+        x=1,
+        y=1,
+        xanchor='center',
+        yanchor='top'
+    ),xaxis=dict(
+        title=dict(text='Time Period', font=dict(size=18, family='Andale Mono')),
+        tickfont=dict(size=14, family='Andale Mono')
+    ),
+    yaxis=dict(
+        title=dict(text='Count', font=dict(size=18, family='Andale Mono')),
+        tickfont=dict(size=14, family='Andale Mono')
+    )
+)
 line_plot.show()
