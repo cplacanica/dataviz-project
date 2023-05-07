@@ -111,6 +111,16 @@ html, body {
   right: 52%;
 }
 
+.image-home img {
+    max-width: 30% !important;
+    height: 35%;
+  position: absolute;
+  top: 60%;
+  left: 4%;
+  margin: 0;
+  padding: 0 14rem 80rem 95rem;
+}
+
 .curatorial-link {
   position: absolute;
   bottom: 66%;
